@@ -1,0 +1,6 @@
+{
+    email {$CADDY_EMAIL}
+}
+
+import /etc/caddy/caddyfiles/*.caddy
+

@@ -1,0 +1,35 @@
+services:
+  caddy:
+    container_name: caddy
+    image: caddy:2.10-alpine
+    restart: always
+    environment:
+      - CADDY_EMAIL=you@cool.com
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ~/Caddyfile:/etc/caddy/Caddyfile # main file imports from below
+      - ~/caddyfiles:/etc/caddy/caddyfiles # place site specific files in ~/caddyfiles/*.caddy
+
+      # Certificate storage (IMPORTANT - preserves SSL certs across restarts)
+      - caddy_data:/data # Certificates stored here
+
+      # Config cache (optional but recommended)
+      - caddy_config:/config
+
+      # Optional: If serving static files
+      # - ./site:/srv
+    networks:
+      - caddy_network
+
+volumes:
+  # Persists SSL certificates - DO NOT DELETE
+  caddy_data:
+  # Persists Caddy configuration cache
+  caddy_config:
+
+networks:
+  caddy_network:
+    driver: bridge
+
