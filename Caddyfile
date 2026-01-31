@@ -1,5 +1,9 @@
 {
     email {$CADDY_EMAIL}
+
+    metrics {
+        per_host
+    }
 }
 
 import /etc/caddy/caddyfiles/*.caddy
