@@ -3,6 +3,8 @@ services:
     container_name: caddy
     image: caddy:2.10-alpine
     restart: always
+    annotations:
+      - nerdctl/bypass4netns=true
     environment:
       - CADDY_EMAIL=you@cool.com
     ports:
