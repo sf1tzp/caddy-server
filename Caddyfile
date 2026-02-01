@@ -6,5 +6,10 @@
     }
 }
 
+# Expose metrics on port 2020 to external requests
+:2020 {
+    metrics
+}
+
 import /etc/caddy/caddyfiles/*.caddy
 
